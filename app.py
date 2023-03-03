@@ -87,10 +87,10 @@ def add_player():
 
 def update_elo_ratings(winner_1, winner_2, loser_1, loser_2, winner_score, loser_score):
     # Award each player 20 basic points for playing the match
-    winner_1.elo += 10
-    winner_2.elo += 10
-    loser_1.elo += 10
-    loser_2.elo += 10
+    winner_1.elo += 2
+    winner_2.elo += 2
+    loser_1.elo += 2
+    loser_2.elo += 2
 
 
     # Calculate the expected scores of the winning and losing teams
