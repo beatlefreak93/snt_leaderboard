@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tennis League Results</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+      rel="stylesheet" />
+  </head>
+  <body class="bg-gray-200">
+    <div class="flex justify-between px-6 py-4 bg-white">
+      <h1 class="text-3xl font-bold">Tennis League Results</h1>
+      <button
+        class="bg-white-400 hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded">
+        <a href="{{ url_for('home') }}">Home</a>
+      </button>
+    </div>
+    <div class="flex flex-col items-center justify-center h-screen">
+      <h2 class="text-2xl font-bold mb-4">Match Results</h2>
+      <table class="border-collapse border border-gray-400">
+        <thead>
+          <tr>
+            <th class="border border-gray-400 px-4 py-2">Match ID</th>
+            <th class="border border-gray-400 px-4 py-2">Player 1</th>
+            <th class="border border-gray-400 px-4 py-2">Player 2</th>
+            <th class="border border-gray-400 px-4 py-2">Player 3</th>
+            <th class="border border-gray-400 px-4 py-2">Player 4</th>
+            <th class="border border-gray-400 px-4 py-2">Winner</th>
+            <th class="border border-gray-400 px-4 py-2">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for match in matches %}
+          <tr>
+            <td class="border border-gray-400 px-4 py-2">{{ match.id }}</td>
+            <td class="border border-gray-400 px-4 py-2">
+              {{ match.player_1_name }}
+            </td>
+            <td class="border border-gray-400 px-4 py-2">
+              {{ match.player_2_name }}
+            </td>
+            <td class="border border-gray-400 px-4 py-2">
+              {{ match.player_3_name }}
+            </td>
+            <td class="border border-gray-400 px-4 py-2">
+              {{ match.player_4_name }}
+            </td>
+            <td class="winner-cell border border-gray-400 px-4 py-2">
+              {% if match.winner == '1' %}{{ match.player_1_name }}, {{
+              match.player_2_name }}{% else %}{{ match.player_3_name }}, {{
+              match.player_4_name }}{% endif %}
+            </td>
+            <td class="border border-gray-400 px-4 py-2">
+              {{ match.p1_game_score }} : {{ match.p3_game_score }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+
+  <style>
+    .winner-cell {
+      width: 180px;
+    }
+  </style>
+</html>

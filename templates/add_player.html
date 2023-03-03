@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>멤버 등록</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.4/dist/tailwind.min.css" />
+  </head>
+  <body class="bg-gray-200">
+    <div class="max-w-xl mx-auto py-8">
+      <h1 class="text-2xl font-bold mb-4">멤버 추가</h1>
+      <form method="POST" action="{{ url_for('add_player') }}">
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="name">
+            이름:
+          </label>
+          <input
+            class="border rounded w-full py-2 px-3"
+            type="text"
+            name="name"
+            id="name"
+            required />
+        </div>
+        <div class="mb-4">
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            type="submit">
+            Add Player
+          </button>
+        </div>
+      </form>
+      <br />
+      <br />
+      <h2 class="text-xl font-bold mb-4">멤버 목록</h2>
+      <table class="w-full border">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border px-4 py-2">Name</th>
+            <th class="border px-4 py-2">Wins</th>
+            <th class="border px-4 py-2">Losses</th>
+            <th class="border px-4 py-2">Win Rate</th>
+            <th class="border px-4 py-2">ELO Rating</th>
+            <th class="border px-4 py-2">Rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for player in players %}
+          <tr>
+            <td class="border px-4 py-2">{{ player.name }}</td>
+            <td class="border px-4 py-2">{{ player.wins }}</td>
+            <td class="border px-4 py-2">{{ player.losses }}</td>
+            <td class="border px-4 py-2">{{ 100*player.win_rate }}%</td>
+            <td class="border px-4 py-2">{{ player.elo | int }}</td>
+            <td class="border px-4 py-2">{{ player.rank }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br />
+      <a href="{{ url_for('home') }}">
+        <button
+          class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+          돌아가기
+        </button>
+      </a>
+    </div>
+  </body>
+</html>

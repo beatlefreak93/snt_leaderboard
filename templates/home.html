@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tennis League</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+      rel="stylesheet" />
+  </head>
+  <body class="bg-white">
+    <div class="flex flex-col items-center justify-center h-screen">
+      <img
+        src="/static/assets/snt_logo.png"
+        alt="SNT Logo"
+        class="w-40 h-auto mb-4" />
+      <p class="text-xl text-gray-800 mb-4">Seoul National Univ. Tennis Club</p>
+      <div class="flex space-x-4">
+        <a
+          href="{{ url_for('result') }}"
+          class="bg-gray-100 hover:bg-gray-300 text-black py-2 px-4 rounded">
+          경기 결과
+        </a>
+        <a
+          href="{{ url_for('add_player') }}"
+          class="bg-gray-100 hover:bg-gray-300 text-black py-2 px-4 rounded">
+          선수 등록
+        </a>
+        <a
+          href="{{ url_for('add_match') }}"
+          id="add-match-link"
+          class="bg-gray-100 hover:bg-gray-300 text-black py-2 px-4 rounded">
+          결과 등록
+        </a>
+        <a
+          href="{{ url_for('leaderboard') }}"
+          class="bg-gray-100 hover:bg-gray-300 text-black py-2 px-4 rounded">
+          리더보드
+        </a>
+        
+      </div>
+      <a href="#" id="elo-link" class="text-blue-500 mt-5 underline">포인트 산정 방식</a>
+      <div id="elo-content" class="hidden mt-4 mx-auto content-center" style="width: 50%;">
+          <iframe src="/static/assets/elo.html" width="100%" height="800" class="content-center"></iframe>
+      </div>
+      
+    </div>
+   
+      </div>
+    </div>
+
+
+    <script>
+      // Get a reference to the link element
+      const linkElement = document.getElementById('elo-link');
+    
+      // Get a reference to the section element
+      const sectionElement = document.getElementById('elo-content');
+    
+      // Hide the section initially
+      sectionElement.style.display = 'none';
+    
+      // Add a click event listener to the link element
+      linkElement.addEventListener('click', function(event) {
+        // Prevent the default behavior of the link
+        event.preventDefault();
+    
+        // Toggle the visibility of the section element
+        sectionElement.style.display = sectionElement.style.display === 'none' ? 'block' : 'none';
+      });
+    </script>
+  </body>
+
+  <!-- <script>
+    function promptPassword() {
+      const password = prompt("비밀번호를 입력하세요:");
+      if (password === "123qwe!!") {
+        // Password correct, proceed to add_match page
+        window.location.href = "{{ url_for('add_match') }}";
+      } else {
+        // Password incorrect, cancel the operation
+        alert("잘못된 비밀번호입니다.");
+      }
+    }
+
+    document
+      .getElementById("add-match-link")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        promptPassword();
+      });
+  </script> -->
+</html>
